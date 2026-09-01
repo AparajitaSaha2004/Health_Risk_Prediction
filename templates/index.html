@@ -1,313 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Diabetes Risk Prediction</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
-        }
-
-        .header {
-            background: #2563eb;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
-
-        .header p {
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 35px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .section-title {
-            margin-top: 0;
-            margin-bottom: 25px;
-            color: #1e40af;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
-
-        input,
-        select {
-            padding: 11px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 15px;
-            background: white;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        button {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 13px 30px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #1d4ed8;
-        }
-
-        .result {
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-        }
-
-        .result h2 {
-            margin: 0;
-            color: #1e40af;
-        }
-
-        .disclaimer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        @media (max-width: 700px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Diabetes Prediction</title>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>Diabetes Risk Prediction</h1>
-        <p>Machine Learning Based Health Risk Assessment</p>
-    </div>
+    <h1>Diabetes Prediction</h1>
 
-    <div class="container">
+    <form action="/predict" method="POST">
 
-        <div class="card">
+        <label>Age:</label>
+        <input type="number" name="Age" required>
+        <br><br>
 
-            <h2 class="section-title">Enter Patient Information</h2>
+        <label>Gender:</label>
+        <select name="Gender">
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+        <br><br>
 
-            <form action="/predict" method="POST">
+        <label>Polyuria:</label>
+        <select name="Polyuria">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                <div class="form-grid">
+        <label>Polydipsia:</label>
+        <select name="Polydipsia">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Age</label>
-                        <input type="number" name="Age" min="1" max="120" required>
-                    </div>
+        <label>Sudden Weight Loss:</label>
+        <select name="sudden weight loss">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <select name="Gender" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
+        <label>Weakness:</label>
+        <select name="weakness">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Polyuria</label>
-                        <select name="Polyuria" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Polyphagia:</label>
+        <select name="Polyphagia">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Polydipsia</label>
-                        <select name="Polydipsia" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Genital Thrush:</label>
+        <select name="Genital thrush">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Sudden Weight Loss</label>
-                        <select name="sudden weight loss" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Visual Blurring:</label>
+        <select name="visual blurring">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Weakness</label>
-                        <select name="weakness" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Itching:</label>
+        <select name="Itching">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Polyphagia</label>
-                        <select name="Polyphagia" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Irritability:</label>
+        <select name="Irritability">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Genital Thrush</label>
-                        <select name="Genital thrush" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Delayed Healing:</label>
+        <select name="delayed healing">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Visual Blurring</label>
-                        <select name="visual blurring" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Partial Paresis:</label>
+        <select name="partial paresis">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Itching</label>
-                        <select name="Itching" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Muscle Stiffness:</label>
+        <select name="muscle stiffness">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Irritability</label>
-                        <select name="Irritability" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Alopecia:</label>
+        <select name="Alopecia">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Delayed Healing</label>
-                        <select name="delayed healing" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <label>Obesity:</label>
+        <select name="Obesity">
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <br><br>
 
-                    <div class="form-group">
-                        <label>Partial Paresis</label>
-                        <select name="partial paresis" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+        <button type="submit">Predict</button>
 
-                    <div class="form-group">
-                        <label>Muscle Stiffness</label>
-                        <select name="muscle stiffness" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
+    </form>
 
-                    <div class="form-group">
-                        <label>Alopecia</label>
-                        <select name="Alopecia" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Obesity</label>
-                        <select name="Obesity" required>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="button-container">
-                    <button type="submit">Predict Diabetes Risk</button>
-                </div>
-
-            </form>
-
-            {% if prediction %}
-<div class="result">
-    <h2>Prediction: {{ prediction }}</h2>
-
-    <p>{{ message }}</p>
-
-    <h3>Predicted Probability: {{ probability }}%</h3>
-
-    <p>
-        This result is generated by a machine learning model
-        and should not be considered a medical diagnosis.
-    </p>
-</div>
-{% endif %}
-
-        </div>
-
-        <div class="disclaimer">
-            This application is for educational purposes only and is not a medical diagnosis.
-        </div>
-
-    </div>
+    {% if prediction %}
+        <h2>Result: {{ prediction }}</h2>
+        <p>Probability: {{ probability }}%</p>
+        <p>{{ message }}</p>
+    {% endif %}
 
 </body>
-
 </html>
